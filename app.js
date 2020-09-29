@@ -112,16 +112,41 @@ const engineerQuestions = [
 const outputArray = [];
 
 
-function beginning() {
+function managerFunc() {
+    inquirer.prompt(managerQuestions)
+    .then((answers) =>{
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        outputArray.push(manager)
+    })
+}
+
+function internFunc() {
+    inquirer.prompt(internQuestions)
+    .then((answers) =>{
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.officeNumber);
+        outputArray.push(intern)
+    })
+}
+
+function engineerFunc() {
+    inquirer.prompt(engineerQuestions)
+    .then((answers) =>{
+        const engineer = new Engineer(answers.name, answers.id, answers.email, answers.officeNumber);
+        outputArray.push(engineer)
+    })
+}
+
+
+function beginningFunc() {
     console.log("Please build your team!");
 inquirer.prompt(beginningQuestions)
 .then((answers) => {
     if (answers.employee === "Manager"){
-    
+        managerFunc();
     } else if (answers.employee === "Intern"){
-        
+        internFunc();
     } else if (answers.employee === "Engineer"){
-
+        engineerFunc();
     } else if (answers.employee === "I don't have any more team members."){
         console.log("Your team is assembled!")
     } 
@@ -129,7 +154,7 @@ inquirer.prompt(beginningQuestions)
     console.log(err)
 })
 }
-beginning();
+beginningFunc();
 
 
 // After the user has input all employees desired, call the `render` function (required
