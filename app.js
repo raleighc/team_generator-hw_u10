@@ -101,6 +101,8 @@ function managerFunc() {
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         outputArray.push(manager)
         beginningFunc();
+    }).catch((err) => {
+        console.log(err)
     })
 }
 
@@ -110,6 +112,8 @@ function internFunc() {
         const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
         outputArray.push(intern)
         beginningFunc();
+    }).catch((err) => {
+        console.log(err)
     })
 }
 
@@ -119,6 +123,8 @@ function engineerFunc() {
         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.username);
         outputArray.push(engineer)
         beginningFunc();
+    }).catch((err) => {
+        console.log(err)
     })
 }
 
