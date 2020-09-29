@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { start } = require("repl");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -39,15 +40,9 @@ const managerQuestions = [
     name: "email",
   },
   {
-    type: "input",
+    type: "number",
     message: "What's your manager's office number?",
     name: "officeNumber",
-  },
-  {
-    type: "list",
-    message: "What type of team member would you like to add?",
-    name: "employee",
-    choices: ["Manager", "Intern", "Engineer", "I don't have any more team members"],
   },
 ];
 
@@ -72,12 +67,6 @@ const internQuestions = [
     message: "What's your intern's school?",
     name: "school",
   },
-  {
-    type: "list",
-    message: "What type of team member would you like to add?",
-    name: "employee",
-    choices: ["Manager", "Intern", "Engineer", "I don't have any more team members"],
-  },
 ];
 
 const engineerQuestions = [
@@ -101,12 +90,6 @@ const engineerQuestions = [
     message: "What's your engineer's Github username?",
     name: "username",
   },
-  {
-    type: "list",
-    message: "What type of team member would you like to add?",
-    name: "employee",
-    choices: ["Manager", "Intern", "Engineer", "I don't have any more team members"],
-  },
 ];
 
 const outputArray = [];
@@ -117,28 +100,35 @@ function managerFunc() {
     .then((answers) =>{
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         outputArray.push(manager)
+        beginningFunc();
     })
 }
 
 function internFunc() {
     inquirer.prompt(internQuestions)
     .then((answers) =>{
-        const intern = new Intern(answers.name, answers.id, answers.email, answers.officeNumber);
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
         outputArray.push(intern)
+        beginningFunc();
     })
 }
 
 function engineerFunc() {
     inquirer.prompt(engineerQuestions)
     .then((answers) =>{
-        const engineer = new Engineer(answers.name, answers.id, answers.email, answers.officeNumber);
+        const engineer = new Engineer(answers.name, answers.id, answers.email, answers.username);
         outputArray.push(engineer)
+        beginningFunc();
     })
 }
 
 
+function startFunc() {
+    console.log("Build your team below!");
+    beginningFunc();
+}
+
 function beginningFunc() {
-    console.log("Please build your team!");
 inquirer.prompt(beginningQuestions)
 .then((answers) => {
     if (answers.employee === "Manager"){
@@ -149,12 +139,13 @@ inquirer.prompt(beginningQuestions)
         engineerFunc();
     } else if (answers.employee === "I don't have any more team members."){
         console.log("Your team is assembled!")
+        console.log(outputArray);
     } 
 }).catch((err) => {
     console.log(err)
 })
 }
-beginningFunc();
+startFunc();
 
 
 // After the user has input all employees desired, call the `render` function (required
