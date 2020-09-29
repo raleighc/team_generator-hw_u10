@@ -139,7 +139,11 @@ inquirer.prompt(beginningQuestions)
         engineerFunc();
     } else if (answers.employee === "I don't have any more team members."){
         console.log("Your team is assembled!")
-        console.log(outputArray);
+        // console.log(outputArray);
+        fs.writeFile(outputPath, render(outputArray), function (err) {
+            if (err) throw err;
+        })
+        console.log("Your page is published!")
     } 
 }).catch((err) => {
     console.log(err)
