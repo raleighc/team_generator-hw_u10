@@ -1,6 +1,6 @@
 # Team Generator App
 
-[Watch a Video of the Team Generator in action!](https://drive.google.com/file/d/1kJ_MtI1xasvBHKyChVhB2BhrlmJg61WD/view)
+![Team Generator](./images/teamhtml.png)
 
 ## Description
 
@@ -8,7 +8,13 @@ This application takes in user input on the command line to generate an html pag
 
 ## Usage
 
-The user accesses this application through the command line. They use node to run the app.js file which will prompt them with a list of team member types to add to their roster. After selecting a member type, they will be prompted with a series of questions related to that position. Once they are finished assembling their team, they select that they do not have any more team members and their HTML file will be generated in the output folder ready to view in your browser.
+The user accesses this application through the command line. They use node to run the app.js file which will prompt them with a list of team member types to add to their roster. After selecting a member type, they will be prompted with a series of questions related to that position. 
+
+![Team Generator](./images/teamprompts.png)
+
+Once they are finished assembling their team, they select that they do not have any more team members and their HTML file will be generated in the output folder ready to view in your browser.
+
+![Team Generator](./images/teamhtml.png)
 
 [Watch Video of README Creator in action!](https://drive.google.com/file/d/1kJ_MtI1xasvBHKyChVhB2BhrlmJg61WD/view)
 
